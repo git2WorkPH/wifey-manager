@@ -1,0 +1,13 @@
+{
+  "name": "@budget/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@budget/contracts": "workspace:*",
+    "dotenv": "^18.0.5",
+    "zod": "^4.1.0"
+  }
+}

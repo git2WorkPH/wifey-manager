@@ -1,0 +1,14 @@
+# Initial implementation
+
+Source: user request to start implementation after requirements and category customization discussion.
+Scope: Expo mobile budgeting workflow, shared validated contracts and money rules, SQLite persistence, authenticated local Node server and offline synchronization. Empty repository; no existing code removed. Calendar months, AUD and full server history are provisional defaults. Mobile recent-history window is three months. Verify through TypeScript, domain/API tests and Expo bundling; native device verification requires a phone or simulator. No deployment or commit requested.
+
+Tooling updated to pnpm 11.25.0 at the user’s request. SDK 55 dependencies checked against Expo’s local compatibility map. Initial tests and TypeScript passed; iOS and Android export bundling passed. Native UI, restart persistence and multi-device sync still require device verification. No existing project files or supported behavior removed.
+HTTP integration verification also passed: unauthenticated and incorrect-secret requests are denied; authenticated writes, duplicate retry, conflict response and invalid-input response behave as expected (10 tests total). Added an Android LAN HTTP config plugin and deterministic allocation IDs so two phones creating the same monthly allocation resolve through revision conflicts.
+
+Follow-up: user requested dotenv. Added server startup environment loading, a non-secret `.env.example` and setup/backup instructions. Existing environment-variable overrides and token validation are preserved. `.env` is already Git-ignored. Verify TypeScript and dotenv file loading/override precedence.
+
+Startup follow-up: user reported Expo attempting to launch an uninstalled development build. Make the standard mobile command explicitly target Expo Go; retain native development-build commands. Verify CLI launch mode and document Expo Go versus development builds. The server EPERM observed inside the agent sandbox is separate and does not establish a user-machine defect.
+
+Component organization follow-up: user explicitly requested breaking down the combined screen and moving components outside features/budget. Relocate BudgetScreen into screens; extract shared controls, navigation, category selection, tab content, styles, utilities and controller state. Preserve UI, data, event handlers and tests. The original combined screen is replaced by these extracted modules under this relocation request. Verify TypeScript, existing tests and both native bundles.
+Component refactor verification: TypeScript and unused-symbol checks pass, all 10 existing tests pass, and iOS/Android exports succeed. UI is split into reusable Button/Field, header/month/tab controls, category picker, per-tab panels, separate forms and record cards, and a budget summary. BudgetScreen only composes the UI; useHouseholdBudget holds shared state/action handling. Native visual verification remains outstanding.

@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Our Budget",
+    "slug": "our-budget",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "com.household.ourbudget",
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Connect to your household budget server on your computer.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.household.ourbudget"
+    },
+    "plugins": [
+      "expo-sqlite",
+      "expo-secure-store",
+      "./plugins/withLocalNetwork"
+    ]
+  }
+}

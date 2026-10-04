@@ -1,0 +1,21 @@
+{
+  "name": "household-budget",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "mobile": "pnpm --filter @budget/mobile start",
+    "server": "pnpm --filter @budget/server dev",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test packages/contracts/src/*.test.ts apps/server/src/*.test.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "tsx": "^4.20.5",
+    "@types/node": "^24.0.0",
+    "@types/react": "~19.2.0"
+  },
+  "packageManager": "pnpm@11.25.0"
+}
