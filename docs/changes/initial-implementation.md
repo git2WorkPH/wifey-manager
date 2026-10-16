@@ -12,3 +12,18 @@ Startup follow-up: user reported Expo attempting to launch an uninstalled develo
 
 Component organization follow-up: user explicitly requested breaking down the combined screen and moving components outside features/budget. Relocate BudgetScreen into screens; extract shared controls, navigation, category selection, tab content, styles, utilities and controller state. Preserve UI, data, event handlers and tests. The original combined screen is replaced by these extracted modules under this relocation request. Verify TypeScript, existing tests and both native bundles.
 Component refactor verification: TypeScript and unused-symbol checks pass, all 10 existing tests pass, and iOS/Android exports succeed. UI is split into reusable Button/Field, header/month/tab controls, category picker, per-tab panels, separate forms and record cards, and a budget summary. BudgetScreen only composes the UI; useHouseholdBudget holds shared state/action handling. Native visual verification remains outstanding.
+
+Tooling follow-up: user asked to add Oxlint to format. Oxlint is the Oxc linter; Oxfmt is its formatter. Add both at the workspace root, expose lint/fix/format/check scripts, configure consistent formatting and run it over tracked source/config files. No application behavior changes.
+
+Oxlint and Oxfmt are installed at the workspace root. `pnpm format` has been applied to JS/TS/JSON files. Initial Oxlint findings were addressed by using immutable sorting and clarifying shadowed names. Run lint and format check after the cleanup.
+
+Oxlint’s immutable-sort suggestion was disabled for these two arrays because Expo targets an ES2022 runtime and TypeScript’s configured library does not include ES2023 `toSorted`. Both arrays are freshly created before sorting. Lint/typecheck/format checks are the verification scope; test suite was not part of this formatter request.
+
+Expo/EAS follow-up: user has a free Expo account and asked for Expo configuration. Reused the project ID from the existing root Expo config without replacing root files; linked the mobile app, added EAS build profiles and pnpm-filtered build/login/info scripts, and documented Android APK and iOS Simulator paths. EAS credentials/project access cannot be confirmed offline.
+
+EAS CLI follow-up: user requested EAS CLI as a project dependency. Added `eas-cli` at the pnpm workspace root and changed the app scripts/docs from one-off `pnpm dlx` downloads to the installed CLI. pnpm blocked optional dependency install scripts; check CLI version and configuration commands before enabling any scripts.
+
+EAS CLI validation found the linked Expo project ID identifies the `household-budget` slug. Aligned `apps/mobile/app.json` slug with that existing project to make EAS profile validation succeed; retained the user-facing app name and native bundle identifiers.
+EAS CLI verification completed: installed CLI reports 24.14.0; Expo account login is valid; EAS CLI validates the Android APK preview and iOS Simulator development profiles against the linked Expo project. No cloud build was started. Workspace lint, formatting check and TypeScript checks pass.
+
+EAS login troubleshooting: added root aliases so `pnpm eas:login` works from the workspace root, with matching whoami/configure/build aliases. The `eas:login` script itself resolves the workspace-installed EAS CLI. Run `pnpm install` after pulling the EAS CLI dependency.

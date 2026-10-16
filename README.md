@@ -94,3 +94,27 @@ The server uses dotenv to load `.env` from its working directory (`apps/server` 
 If you see “No development build (com.household.ourbudget) … is installed”, stop Metro and run `pnpm mobile` again. The default command explicitly starts Expo Go. Open the QR code in a compatible Expo Go client, or press `i` / `a` for an available simulator/emulator with Expo Go. In the Expo terminal, `s` switches launch modes; ensure it says “Using Expo Go”.
 
 To use a custom development build instead, first install it using `pnpm --filter @budget/mobile ios` or `pnpm --filter @budget/mobile android`. Starting Metro alone does not install that build.
+
+## Code quality
+
+Oxlint checks JavaScript and TypeScript, while Oxfmt handles formatting. From the repository root, run `pnpm lint` or `pnpm lint:fix`; format files with `pnpm format` and check formatting with `pnpm format:check`. Shared settings live in `.oxlintrc.json` and `.oxfmtrc.json`.
+
+## Expo account and EAS builds
+
+The mobile project is linked to the Expo project ID already present in this workspace. EAS settings live alongside the app in `apps/mobile/eas.json`; the existing root EAS files are left as-is. Sign in with the Expo account that owns that project, then verify the linked project:
+
+```sh
+pnpm eas:login
+pnpm eas:whoami
+pnpm eas:configure
+```
+
+`eas:configure` displays the linked project. If Expo reports that the project belongs to another account or that you lack access, stop and verify the project ID/account before changing it.
+
+Build an Android APK for direct installation with the free Expo account:
+
+```sh
+pnpm build:android
+```
+
+The first EAS build may ask to create or configure Android signing credentials. EAS can manage these credentials. The `ios-simulator` profile builds an iOS Simulator app; installing a build on a physical iPhone requires Apple signing credentials and may require Apple Developer Program membership. Production builds use the `production` profile in `apps/mobile/eas.json`. EAS cloud build availability and free-tier quotas are controlled by Expo and the account’s current plan.

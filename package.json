@@ -9,13 +9,25 @@
     "mobile": "pnpm --filter @budget/mobile start",
     "server": "pnpm --filter @budget/server dev",
     "typecheck": "tsc --noEmit",
-    "test": "node --import tsx --test packages/contracts/src/*.test.ts apps/server/src/*.test.ts"
+    "test": "node --import tsx --test packages/contracts/src/*.test.ts apps/server/src/*.test.ts",
+    "lint": "oxlint apps packages",
+    "lint:fix": "oxlint --fix apps packages",
+    "format": "oxfmt \"**/*.{js,jsx,ts,tsx,json,jsonc}\"",
+    "format:check": "oxfmt --check \"**/*.{js,jsx,ts,tsx,json,jsonc}\"",
+    "eas:login": "pnpm --filter @budget/mobile run eas:login",
+    "eas:whoami": "pnpm --filter @budget/mobile run eas:whoami",
+    "eas:configure": "pnpm --filter @budget/mobile run eas:configure",
+    "build:android": "pnpm --filter @budget/mobile run build:android",
+    "build:ios:simulator": "pnpm --filter @budget/mobile run build:ios:simulator"
   },
   "devDependencies": {
-    "typescript": "^5.9.2",
-    "tsx": "^4.20.5",
     "@types/node": "^24.0.0",
-    "@types/react": "~19.2.0"
+    "@types/react": "~19.2.0",
+    "eas-cli": "^24.14.0",
+    "oxfmt": "^0.73.0",
+    "oxlint": "^1.88.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
   },
   "packageManager": "pnpm@11.25.0"
 }

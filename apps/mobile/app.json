@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Our Budget",
-    "slug": "our-budget",
+    "slug": "household-budget",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -17,10 +17,11 @@
     "android": {
       "package": "com.household.ourbudget"
     },
-    "plugins": [
-      "expo-sqlite",
-      "expo-secure-store",
-      "./plugins/withLocalNetwork"
-    ]
+    "plugins": ["expo-sqlite", "expo-secure-store", "./plugins/withLocalNetwork"],
+    "extra": {
+      "eas": {
+        "projectId": "83b19642-8fa1-4782-b79b-6280641e96b5"
+      }
+    }
   }
 }
