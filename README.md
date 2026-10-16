@@ -34,7 +34,7 @@ In another terminal:
 pnpm mobile
 ```
 
-Open with a compatible Expo Go app, or create a development build with `pnpm --filter @budget/mobile ios` / `pnpm --filter @budget/mobile android` (native toolchains required). Expo Go compatibility depends on the SDK supported by the installed client. Allow local-network permission on iOS. The included Android config plugin enables LAN HTTP in development builds; plain HTTP access still needs target-phone verification. Use HTTPS for production.
+This project uses Expo SDK 57; use an Expo Go client for SDK 57. On a physical iPhone, sign in to Expo Go and the Expo CLI with the same Expo account. Allow local-network permission on iOS. The included Android config plugin enables LAN HTTP in development builds; plain HTTP access still needs target-phone verification. Use HTTPS for production.
 
 In Settings, enter your computer's LAN address (for example `http://192.168.1.20:3001`) and the household secret. Both devices must be on a reachable network, and the computer must be awake for sync. The default server binding is loopback unless HOST is set. The LAN HTTP setup is for development on a trusted network; use HTTPS/private VPN for use beyond that environment. Do not port-forward this development server to the internet.
 
@@ -117,4 +117,4 @@ Build an Android APK for direct installation with the free Expo account:
 pnpm build:android
 ```
 
-The first EAS build may ask to create or configure Android signing credentials. EAS can manage these credentials. The `ios-simulator` profile builds an iOS Simulator app; installing a build on a physical iPhone requires Apple signing credentials and may require Apple Developer Program membership. Production builds use the `production` profile in `apps/mobile/eas.json`. EAS cloud build availability and free-tier quotas are controlled by Expo and the account’s current plan.
+For quick iPhone testing, run `pnpm mobile` and open the QR code in Expo Go. The app currently uses Expo Go-compatible native modules, so this does not require an EAS build. For an installable development app with the native developer menu, run `pnpm build:ios:device`; register your iPhone when prompted and configure Apple signing credentials. Direct iPhone installation uses ad hoc provisioning, which requires a paid Apple Developer Program membership. This EAS Build creates a development artifact in Expo; it does not submit the app to the App Store. The `ios-simulator` profile builds for an iOS Simulator. Production builds use the `production` profile in `apps/mobile/eas.json`. EAS cloud build availability and free-tier quotas are controlled by Expo and the account’s current plan.

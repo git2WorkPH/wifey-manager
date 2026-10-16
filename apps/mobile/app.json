@@ -11,7 +11,8 @@
         "NSLocalNetworkUsageDescription": "Connect to your household budget server on your computer.",
         "NSAppTransportSecurity": {
           "NSAllowsLocalNetworking": true
-        }
+        },
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {

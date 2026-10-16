@@ -18,7 +18,9 @@
     "eas:whoami": "pnpm --filter @budget/mobile run eas:whoami",
     "eas:configure": "pnpm --filter @budget/mobile run eas:configure",
     "build:android": "pnpm --filter @budget/mobile run build:android",
-    "build:ios:simulator": "pnpm --filter @budget/mobile run build:ios:simulator"
+    "build:ios:simulator": "pnpm --filter @budget/mobile run build:ios:simulator",
+    "build:ios:device": "pnpm --filter @budget/mobile run build:ios:device",
+    "local:ios": "pnpm --filter @budget/mobile exec expo start --go --lan"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

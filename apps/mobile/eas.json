@@ -20,6 +20,12 @@
         "simulator": true
       }
     },
+    "ios-device": {
+      "extends": "development",
+      "ios": {
+        "simulator": false
+      }
+    },
     "production": {
       "autoIncrement": true
     }
